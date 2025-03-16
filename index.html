@@ -24,7 +24,7 @@
   <body class="index-page">
     <!-- Navbar-->
     <!-- Navbar-->
-    <nav class="navbar navbar-main navbar-expand-lg bg-white navbar-light position-sticky top-0 py-2" id="navbar-main">
+    <nav class="navbar navbar-main navbar-expand-lg bg-trasparent navbar-light position-sticky top-0 py-4 py-md-2" id="navbar-main">
       <div class="container"><a class="navbar-brand mr-lg-5" href="./index.html"><img src="./img/brand/blue.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="navbar-collapse collapse" id="navbar_global">
@@ -82,46 +82,16 @@
     </nav>
     <div class="wrapper">
       <!-- Block content-->
-      <!--.section.section-hero.section-shaped.shape
-      -->
-      <div id="container-home">       
-        <div class="container">   
-          <div id="lottie-container"></div>
-          <!--.page-header
-          .container.shape-container.d-flex.align-items-center.py-lg
-              .col.px-0
-                  .row.align-items-center.justify-content-center
-                      .col-lg-6.text-center
-                          img.img-fluid(src="./img/brand/white.png", style="width: 200px;")
-                          p.lead.text-white A beautiful Design System for Bootstrap 4. It&apos;s Free and Open Source.
-                          .btn-wrapper.mt-5
-                              a.btn.btn-lg.btn-white.btn-icon.mb-3.mb-sm-0(href="https://www.creative-tim.com/product/argon-design-system")
-                                  span.btn-inner--icon
-                                      i.ni.ni-cloud-download-95
-                                  span.btn-inner--text Download HTML
-                              a.btn.btn-lg.btn-github.btn-icon.mb-3.mb-sm-0(href="https://github.com/creativetimofficial/argon-design-system", target="_blank")
-                                  span.btn-inner--icon
-                                      i.fa.fa-github
-                                  span.btn-inner--text
-                                      span.text-warning Star us
-                                      | on Github
-                          .mt-5
-                              small.font-weight-bold.mb-0.mr-2.text-white *proudly coded by
-                              img(src="./img/brand/creativetim-white-slim.png", style="height: 28px;")
-          -->
-          <!--.separator.separator-bottom.separator-skew.zindex-100
-          svg(x="0", y="0", viewBox="0 0 2560 100", preserveAspectRatio="none", version="1.1", xmlns="http://www.w3.org/2000/svg")
-              polygon.fill-white(points="2560 0 2560 100 0 100")
-          -->
-        </div>
-      </div>
+      <div class="container pt-5">  
+        <div id="lottie-container"></div>
+      </div><img class="bg-home container pt-4" src="./img/bg.svg" alt="Background">
       <div class="section section-components pb-0" id="section-components">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col">
               <div class="card" style="width: 18rem;"><img class="card-img-top" src="./img/slider/image0.png" alt="Card image cap">
                 <div class="card-body text-center">
-                  <h5 class="card-title fw-bold">BUEN PRECIO aaa</h5>
+                  <h6 class="card-title fw-bold">BUEN PRECIO</h6>
                   <p class="card-text" style="font-size:14px !important">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.</p>
                 </div>
               </div>
@@ -129,7 +99,7 @@
             <div class="col">   
               <div class="card" style="width: 18rem;"><img class="card-img-top" src="./img/slider/image1.png" alt="Card image cap">
                 <div class="card-body text-center">
-                  <h5 class="card-title fw-bold">ALTÍSIMA CALIDAD</h5>
+                  <h6 class="card-title fw-bold">ALTÍSIMA CALIDAD</h6>
                   <p class="card-text" style="font-size:14px !important">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.</p>
                 </div>
               </div>
@@ -137,7 +107,7 @@
             <div class="col">   
               <div class="card" style="width: 18rem;"><img class="card-img-top" src="./img/slider/image2.png" alt="Card image cap">
                 <div class="card-body text-center">
-                  <h5 class="card-title fw-bold">MARCA CON RESPALDO</h5>
+                  <h6 class="card-title fw-bold">MARCA CON RESPALDO</h6>
                   <p class="card-text" style="font-size:14px !important">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.</p>
                 </div>
               </div>
@@ -145,35 +115,54 @@
           </div>
         </div>
       </div>
-      <!-- Footer-->
-      <footer class="footer has-cards">
-        <div class="container container-lg">
-          <div class="row">
-            <div class="col-md-6 mb-5 mb-md-0">
-              <div class="card card-lift--hover shadow border-0"><a href="./examples/landing.html" title="Landing Page"><img class="card-img" src="./img/theme/landing.jpg"></a></div>
-            </div>
-            <div class="col-md-6 mb-5 mb-lg-0">
-              <div class="card card-lift--hover shadow border-0"><a href="./examples/profile.html" title="Profile Page"><img class="card-img" src="./img/theme/profile.jpg"></a></div>
+      <section class="position-relative" id="repuestos">
+        <div class="bg-section"></div>
+        <div class="container py-4">
+          <div class="text-center mb-xxl-5 mb-lg-4">
+            <h2 class="display-4 mb-4">¿QUÉ TIPO DE REPUESTO NECESITAS? ¡LO TENEMOS!</h2>
+          </div>
+          <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0"><img class="img-fluid" src="./img/theme/section3/image.png" alt="Repuestos"></div>
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Carrocería</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Cerraduras y Llaves</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Climatización</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Componentes de Seguridad</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Cristales</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Electroventiladores</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Encendido</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Espejos</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Filtros</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Frenos</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Iluminación</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Instalaciones Eléctricas</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Inyección</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Motor</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Repuestos de Exterior</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Repuestos de Habitáculo</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Suspensión y Dirección</li>
+                    <li class="mb-2"><img class="arrow-icon mr-2" src="./img/arrow.svg" alt="arrow">Transmisión</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </section>
+      <!-- Footer-->
+      <footer class="footer has-cards">
+        <hr>
         <div class="container">
-          <div class="row row-grid align-items-center my-md">
-            <div class="col-lg-6">
-              <h3 class="text-primary font-weight-light mb-2">Thank you for supporting us!</h3>
-              <h4 class="mb-0 font-weight-light">Let's get in touch on any of these platforms.</h4>
-            </div>
-            <div class="col-lg-6 text-lg-center btn-wrapper">
-              <button class="btn btn-icon-only btn-twitter rounded-circle" target="_blank" href="https://twitter.com/creativetim" rel="nofollow" data-toggle="tooltip" data-original-title="Follow us"><span class="btn-inner--icon"><i class="fa fa-twitter"></i></span></button>
-              <button class="btn-icon-only rounded-circle btn btn-facebook" target="_blank" href="https://www.facebook.com/CreativeTim/" rel="nofollow" data-toggle="tooltip" data-original-title="Like us"><span class="btn-inner--icon"><i class="fab fa-facebook"></i></span></button>
-              <button class="btn btn-icon-only btn-dribbble rounded-circle" target="_blank" href="https://dribbble.com/creativetim" rel="nofollow" data-toggle="tooltip" data-original-title="Follow us"><span class="btn-inner--icon"><i class="fa fa-dribbble"></i></span></button>
-              <button class="btn btn-icon-only btn-github rounded-circle" target="_blank" href="https://github.com/creativetimofficial" rel="nofollow" data-toggle="tooltip" data-original-title="Star on Github"><span class="btn-inner--icon"><i class="fa fa-github"></i></span></button>
-            </div>
-          </div>
-          <hr>
           <div class="row align-items-center justify-content-md-between">
             <div class="col-md-6">
-              <div class="copyright">&copy; 2020 <a href="" target="_blank">Creative Tim</a>.</div>
+              <div class="copyright">&copy; 2025 <a href="" target="_blank">Created by Taxim</a>.</div>
             </div>
             <div class="col-md-6">
               <ul class="nav nav-footer justify-content-end">

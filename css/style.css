@@ -1,8 +1,25 @@
 #container-home {
-    background-image: url('../img/bg.svg');
-    background-repeat: no-repeat;
-    background-size: calc(100% + 1px);
+    position: relative;
     padding: 4rem 0;
+    overflow: hidden;
+}
+
+#lottie-container{
+    margin-top: -4rem;
+}
+
+.footer{
+    background: #FAB60F;
+}
+
+.bg-home {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+    transform: scale(1.4);
 }
 
 .card {
@@ -37,7 +54,8 @@
 .card-title {
     color: #32325d;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .card-text {
@@ -56,10 +74,6 @@
 }
 
 @media (min-width: 1468px) {
-    #container-home {
-        background-size: 100%;
-        background-position: 100% 30%;
-    }
 }
 
 @media (max-width: 768px) {
@@ -69,5 +83,102 @@
     
     .section-components .row {
         margin: 0 1rem;
+    }
+}
+
+/* Estilos para la sección de repuestos */
+#repuestos {
+    position: relative;
+    margin-top: 4rem;
+    background: none;
+}
+
+#repuestos .bg-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffc107;
+    /*clip-path: polygon(0 0, 100% 30px, 100% calc(100% - 30px), 0% 100%);*/
+    z-index: -1;
+}
+
+#repuestos h2 {
+    color: #32325d;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+#repuestos ul li {
+    color: #32325d;
+    font-size: calc(5px + 0.5vw);
+    display: flex;
+    align-items: center;
+}
+
+#repuestos .arrow-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 1rem;
+    transition: transform 0.2s ease;
+}
+
+#repuestos ul li:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+#repuestos img {
+    transition: transform 0.3s ease;
+}
+
+#repuestos .img-fluid {
+    height: auto;
+    position: absolute;
+    margin-top: -7.2rem;
+    right: 2rem;
+    width: min(1200px, calc(70% + 25vw));
+    max-width: calc(100vw - 2rem) ;
+}
+
+#repuestos img:hover {
+    transform: scale(1.05);
+}
+
+@media (min-width: 1400px){
+    #repuestos .img-fluid {
+        margin-top: -8.2rem;
+        width: min(1200px, calc(55% + 25vw));
+        max-width: calc(100vw - 2rem) ;
+    }
+}
+
+@media (max-width: 991px) {
+    #repuestos {
+        padding: 4rem 0;
+    }
+    
+    #repuestos h2 {
+        font-size: 2rem;
+    }
+    
+    #repuestos ul li {
+        font-size: 1rem;
+    }
+
+    #repuestos .img-fluid {
+        position: relative;
+        margin-top: 0;
+        right: auto;
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto 2rem;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    #repuestos .img-fluid {
+        max-width: 80%;
     }
 }
