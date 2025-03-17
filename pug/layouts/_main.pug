@@ -48,12 +48,48 @@ html(lang="en")
             var animation = lottie.loadAnimation({
                 container: document.getElementById('lottie-container'), 
                 renderer: 'svg',
-                loop: true,
+                loop: false,
                 autoplay: true,
                 path: './img/taxim.json'
             });
 
-            animation.playSegments([5000, 10000], true);
+            // Esperar a que la animación se cargue
+            animation.addEventListener('DOMLoaded', function() {
+                // Obtener información sobre la animación
+                var totalFrames = animation.totalFrames;
+                var fps = animation.frameRate;
+                var duration = animation.getDuration();
+                
+                // Configurar frames para el ping-pong
+                var startFrame = Math.floor(fps * 5); // Frame para segundo 5
+                var endFrame = Math.floor(fps * 10);   // Frame para segundo 10
+                var isReversed = false;
+                
+                // Configurar velocidad inicial
+                animation.setSpeed(0.5);
+                
+                // Función para reproducir en modo ping-pong
+                function playPingPong() {
+                    if (!isReversed) {
+                        animation.setDirection(1);  // Dirección normal
+                        animation.playSegments([startFrame, endFrame], true);
+                    } else {
+                        animation.setDirection(-1); // Dirección inversa
+                        animation.playSegments([endFrame, startFrame], true);
+                    }
+                    isReversed = !isReversed;
+                }
+                
+                // Cuando termine la primera reproducción
+                animation.addEventListener('complete', function() {
+                    playPingPong(); // Iniciar el ping-pong
+                });
+                
+                // Escuchar cuando termina cada segmento
+                animation.addEventListener('loopComplete', function() {
+                    playPingPong(); // Reproducir el siguiente segmento
+                });
+            });
         script.
             function scrollToDownload() {
                 if ($(".section-download").length != 0) {
