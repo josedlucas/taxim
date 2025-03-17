@@ -124,6 +124,24 @@
     transition: transform 0.2s ease;
 }
 
+#carouselTestimonios .carousel-indicators {
+    bottom: -50px;
+}
+#carouselTestimonios .carousel-indicators button {
+    width: 6%;
+    height: 9px;
+    border-radius: 20px;
+    background-color: #E0E0E0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+    border: none !important;
+    outline: none !important;
+}
+#carouselTestimonios .carousel-indicators button.active {
+    background-color: #FFC107;
+}
+
 #repuestos ul li:hover .arrow-icon {
     transform: translateX(5px);
 }

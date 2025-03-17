@@ -14,7 +14,7 @@ block content
                             p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
                 .col    
                     .card(style="width: 18rem;")
-                        img.card-img-top(src="./img/slider/image1.png", alt="Card image cap")
+                        img.card-img-top(src="./img/slider/image.png", alt="Card image cap")
                         .card-body.text-center
                             h6.card-title.fw-bold ALTÍSIMA CALIDAD
                             p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
@@ -93,3 +93,48 @@ block content
                                 li.mb-2
                                     img.arrow-icon.mr-2(src="./img/arrow.svg", alt="arrow")
                                     | Transmisión
+
+    section#testimonios.py-5.mt-5
+        .container.mt-5.pt-5
+            .text-center.mb-5
+                h5.display-5.font-weight-bold #ExperienciaTAXIM
+                h3.mb-4 NUESTROS CLIENTES OPINAN
+            #carouselTestimonios.carousel.slide(data-ride="carousel" data-interval="5000")
+                .carousel-inner
+                    .carousel-item.active
+                        .row.justify-content-center
+                            .col-md-10
+                                .card.border-0.shadow
+                                    .card-body.p-5
+                                        .row.align-items-center
+                                            .col-md-4
+                                                img.img-fluid(src="/img/theme/section4/image.png", alt="Kit de distribución")
+                                            .col-md-8
+                                                h4.mb-3 Juan Martín Orella
+                                                p.lead "Original por donde se lo mire. Tranquilidad por los próximos 60000 kms."
+                    .carousel-item
+                        .row.justify-content-center
+                            .col-md-10
+                                .card.border-0.shadow
+                                    .card-body.p-5
+                                        .row.align-items-center
+                                            .col-md-4
+                                                img.img-fluid(src="/img/theme/section4/image.png", alt="Bomba de agua")
+                                            .col-md-8
+                                                h4.mb-3 Carlos Rodríguez
+                                                p.lead "Excelente calidad y servicio. La bomba de agua funciona perfectamente."
+                    .carousel-item
+                        .row.justify-content-center
+                            .col-md-10
+                                .card.border-0.shadow
+                                    .card-body.p-5
+                                        .row.align-items-center
+                                            .col-md-4
+                                                img.img-fluid(src="/img/theme/section4/image.png", alt="Kit de filtros")
+                                            .col-md-8
+                                                h4.mb-3 María González
+                                                p.lead "Los filtros son de primera calidad. Mi auto funciona como nuevo."
+                .carousel-indicators.mt-5
+                    button.active(type="button" data-target="#carouselTestimonios" data-slide-to="0")
+                    button(type="button" data-target="#carouselTestimonios" data-slide-to="1")
+                    button(type="button" data-target="#carouselTestimonios" data-slide-to="2")
