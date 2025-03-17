@@ -2,7 +2,7 @@ extends ../layouts/_main
 block content 
     .container.pt-5   
         #lottie-container
-    img(src="./img/bg.svg", alt="Background").bg-home.container.pt-4   
+    img(src="./img/bg.svg", alt="Background").bg-home.container.pt-4.d-md-block.d-none   
     #section-components.section.section-components.pb-0
         .container
             .row.justify-content-center
@@ -14,7 +14,7 @@ block content
                             p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
                 .col    
                     .card(style="width: 18rem;")
-                        img.card-img-top(src="./img/slider/image.png", alt="Card image cap")
+                        img.card-img-top(src="./img/slider/image1.png", alt="Card image cap")
                         .card-body.text-center
                             h6.card-title.fw-bold ALTÍSIMA CALIDAD
                             p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
@@ -96,7 +96,7 @@ block content
 
     section#testimonios.py-5.mt-5
         .container.mt-5.pt-5
-            .text-center.mb-5
+            .text-center.mb-5.pt-5.pb-2
                 h5.display-5.font-weight-bold #ExperienciaTAXIM
                 h3.mb-4 NUESTROS CLIENTES OPINAN
             #carouselTestimonios.carousel.slide(data-ride="carousel" data-interval="5000")
@@ -141,3 +141,56 @@ block content
                     button.active(type="button" data-target="#carouselTestimonios" data-slide-to="0")
                     button(type="button" data-target="#carouselTestimonios" data-slide-to="1")
                     button(type="button" data-target="#carouselTestimonios" data-slide-to="2")
+
+    section#instagram.py-5.mt-5.pt-5
+        .container-md.text-center
+            h2.display-4.mb-2 #TAXIM
+            p.text-muted.mb-5 Seguimos en IG @taxim_txm
+            #carouselInstagram.carousel.slide(data-ride="carousel" data-interval="3000").d-md-block.d-none
+                .carousel-inner
+                    .carousel-item.active
+                        .row.g-3
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image0.png", alt="Stock TAXIM")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Polichela TAXIM")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image2.png", alt="Linea TAXIM")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Nuevo Ingreso")
+                    .carousel-item
+                        .row.g-3
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image2.png", alt="Nuevo Ingreso")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Stock TAXIM")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image0.png", alt="Polichela TAXIM")
+                            .col-6.col-md-3
+                                a(href="#")
+                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Linea TAXIM")
+                .carousel-indicators.mt-4
+                    button.active(type="button" data-target="#carouselInstagram" data-slide-to="0")
+                    button(type="button" data-target="#carouselInstagram" data-slide-to="1")
+            .swiper-container.d-block.d-md-none#swiperInstagramMovile
+                .swiper-wrapper
+                    .swiper-slide
+                        a(href="#")
+                            img.img-fluid.w-100.rounded-3(src="./img/slider/image0.png", alt="Polichela TAXIM")
+                    .swiper-slide
+                        a(href="#")
+                            img.img-fluid.w-100.rounded-3(src="./img/slider/image1.png", alt="Stock TAXIM")
+                    .swiper-slide
+                        a(href="#")
+                            img.img-fluid.w-100.rounded-3(src="./img/slider/image2.png", alt="Linea TAXIM")
+                    .swiper-slide
+                        a(href="#")
+                            img.img-fluid.w-100.rounded-3(src="./img/slider/image1.png", alt="Nuevo Ingreso")
+                .swiper-pagination.mt-4

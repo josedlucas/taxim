@@ -142,6 +142,114 @@
     background-color: #FFC107;
 }
 
+/* Estilos para la sección de Instagram */
+#instagram {
+    background-color: #fff;
+}
+
+#instagram .instagram-item {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+#instagram .instagram-item img {
+    transition: transform 0.3s ease;
+}
+
+#instagram .instagram-item:hover img {
+    transform: scale(1.05);
+}
+
+#carouselInstagram .carousel-indicators {
+    bottom: -30px;
+}
+
+#carouselInstagram .carousel-indicators button {
+    width: 6%;
+    height: 9px;
+    border-radius: 20px;
+    background-color: #E0E0E0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+    border: none !important;
+    outline: none !important;
+}
+
+#carouselInstagram .carousel-indicators button.active {
+    background-color: #FFC107;
+}
+
+#swiperInstagramMovile {
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    overflow: visible;
+}
+
+#swiperInstagramMovile .swiper-slide {
+    width: 60%;
+    transition: all 0.3s ease;
+    opacity: 0.4;
+    transform: scale(0.85);
+}
+
+#swiperInstagramMovile .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#swiperInstagramMovile .swiper-slide img {
+    border-radius: 0.75rem;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#swiperInstagramMovile .swiper-pagination {
+    bottom: -10px;
+}
+
+#swiperInstagramMovile .swiper-pagination-bullet {
+    width: 6%;
+    height: 9px;
+    border-radius: 20px;
+    background-color: #E0E0E0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+}
+
+#swiperInstagramMovile .swiper-pagination-bullet-active {
+    background-color: #FFC107;
+}
+
+@media (max-width: 576px) {
+    #swiperInstagramMovile .swiper-slide {
+        width: 75%;
+    }
+}
+
+.rounded-3 {
+    border-radius: 2rem;
+}
+
+.row.g-3 {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.row.g-3 > [class*='col-'] {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 16px;
+}
+
 #repuestos ul li:hover .arrow-icon {
     transform: translateX(5px);
 }
