@@ -327,6 +327,23 @@
     transform: scale(1.05);
 }
 
+.z-1 { z-index: 1; }
+.z-2 { z-index: 2; }
+.z-3 { z-index: 3; }
+.z-4 { z-index: 4; }
+.z-5 { z-index: 5; }
+.z-6 { z-index: 6; }
+.z-7 { z-index: 7; }
+.z-8 { z-index: 8; }
+.z-9 { z-index: 9; }
+.z-10 { z-index: 10; }
+
+#about-section1 img[data-screen="d"] {
+    transform: scale(1.3);
+    margin-top: -4rem;
+}
+
+
 @media (min-width: 1400px){
     #repuestos .img-fluid {
         margin-top: -8.2rem;
@@ -335,7 +352,18 @@
     }
 }
 
+@media (max-width: 1400px){
+    #about-section1 img[data-screen="d"] {
+        transform: scale(1.5);
+        margin-top: -6rem;
+    }
+}
+
 @media (max-width: 991px) {
+    #about-section1 img[data-screen="d"] {
+        transform: scale(1.5);
+        margin-top: -6rem;
+    }
     #repuestos {
         padding: 4rem 0;
     }
@@ -371,6 +399,11 @@
     
     .section-components .row {
         margin: 0 1rem;
+    }
+
+    #about-section1 img[data-screen="d"] {
+        transform: scale(1.5);
+        margin-top: -6rem;
     }
 }
 
