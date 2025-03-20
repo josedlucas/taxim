@@ -1,33 +1,35 @@
 extends ../layouts/_main
 block content 
-    .container.pt-5   
+    .container.pt-5.px-0.px-md-auto   
         #lottie-container
     img(src="./img/bg.svg", alt="Background").bg-home.container.pt-4.d-md-block.d-none   
     #section-components.section.section-components.pb-0
         .container
-            .row.justify-content-center
-                .col
-                    .card(style="width: 18rem;")
-                        img.card-img-top(src="./img/slider/image0.png", alt="Card image cap")
-                        .card-body.text-center
-                            h6.card-title.fw-bold BUEN PRECIO
-                            p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
-                .col    
-                    .card(style="width: 18rem;")
-                        img.card-img-top(src="./img/slider/image1.png", alt="Card image cap")
-                        .card-body.text-center
-                            h6.card-title.fw-bold ALTÍSIMA CALIDAD
-                            p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
-                .col    
-                    .card(style="width: 18rem;")
-                        img.card-img-top(src="./img/slider/image2.png", alt="Card image cap")
-                        .card-body.text-center
-                            h6.card-title.fw-bold MARCA CON RESPALDO
-                            p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
+            #swiperCards.swiper
+                .swiper-wrapper
+                    .swiper-slide
+                        .card
+                            img.card-img-top(src="./img/slider/image0.png", alt="Card image cap")
+                            .card-body.text-center
+                                h6.card-title.fw-bold BUEN PRECIO
+                                p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
+                    .swiper-slide
+                        .card
+                            img.card-img-top(src="./img/slider/image1.png", alt="Card image cap")
+                            .card-body.text-center
+                                h6.card-title.fw-bold ALTÍSIMA CALIDAD
+                                p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
+                    .swiper-slide
+                        .card
+                            img.card-img-top(src="./img/slider/image2.png", alt="Card image cap")
+                            .card-body.text-center
+                                h6.card-title.fw-bold MARCA CON RESPALDO
+                                p.card-text(style="font-size:14px !important") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus orci sem, porta ut ullamcorper quis, egestas et eros.
+                .swiper-pagination.mt-4
 
     section#repuestos.position-relative
         .bg-section
-        .container.py-4
+        .container.py-md-4
             .text-center.mb-xxl-5.mb-lg-4
                 h2.display-4.mb-4 ¿QUÉ TIPO DE REPUESTO NECESITAS? ¡LO TENEMOS!
             .row.align-items-center
@@ -35,7 +37,7 @@ block content
                     img.img-fluid(src="./img/theme/section3/image.png", alt="Repuestos")
                 .col-lg-6
                     .row
-                        .col-md-6
+                        .col-md-6.pl-5.pl-md-auto
                             ul.list-unstyled
                                 li.mb-2
                                     img.arrow-icon.mr-2(src="./img/arrow.svg", alt="arrow")
@@ -64,7 +66,7 @@ block content
                                 li.mb-2
                                     img.arrow-icon.mr-2(src="./img/arrow.svg", alt="arrow")
                                     | Filtros
-                        .col-md-6
+                        .col-md-6.pl-5.pl-md-auto
                             ul.list-unstyled
                                 li.mb-2
                                     img.arrow-icon.mr-2(src="./img/arrow.svg", alt="arrow")
@@ -94,14 +96,14 @@ block content
                                     img.arrow-icon.mr-2(src="./img/arrow.svg", alt="arrow")
                                     | Transmisión
 
-    section#testimonios.py-5.mt-5
-        .container.mt-5.pt-5
-            .text-center.mb-5.pt-5.pb-2
+    section#testimonios.py-5.mt-md-5
+        .container.mt-md-5.pt-md-5
+            .text-center.mb-5.pt-md-5.pb-2
                 h5.display-5.font-weight-bold #ExperienciaTAXIM
                 h3.mb-4 NUESTROS CLIENTES OPINAN
-            #carouselTestimonios.carousel.slide(data-ride="carousel" data-interval="5000")
-                .carousel-inner
-                    .carousel-item.active
+            #swiperTestimonios.swiper
+                .swiper-wrapper
+                    .swiper-slide
                         .row.justify-content-center
                             .col-md-10
                                 .card.border-0.shadow
@@ -113,7 +115,7 @@ block content
                                                 h6.mb-3.font-weight-bold Juan Martín Orella
                                                 hr  
                                                 p.lead "Original por donde se lo mire. Tranquilidad por los próximos 60000 kms."
-                    .carousel-item
+                    .swiper-slide
                         .row.justify-content-center
                             .col-md-10
                                 .card.border-0.shadow
@@ -125,7 +127,7 @@ block content
                                                 h6.mb-3.font-weight-bold Carlos Rodríguez
                                                 hr  
                                                 p.lead "Excelente calidad y servicio. La bomba de agua funciona perfectamente."
-                    .carousel-item
+                    .swiper-slide
                         .row.justify-content-center
                             .col-md-10
                                 .card.border-0.shadow
@@ -137,49 +139,13 @@ block content
                                                 h6.mb-3.font-weight-bold María González
                                                 hr  
                                                 p.lead "Los filtros son de primera calidad. Mi auto funciona como nuevo."
-                .carousel-indicators.mt-5
-                    button.active(type="button" data-target="#carouselTestimonios" data-slide-to="0")
-                    button(type="button" data-target="#carouselTestimonios" data-slide-to="1")
-                    button(type="button" data-target="#carouselTestimonios" data-slide-to="2")
+                .swiper-pagination.mt-5
 
-    section#instagram.py-5.mt-5.pt-5
-        .container-md.text-center
+    section#instagram.py-5.mt-md-5.pt-md-5
+        .container.text-center
             h2.display-4.mb-2 #TAXIM
             p.text-muted.mb-5 Seguimos en IG @taxim_txm
-            #carouselInstagram.carousel.slide(data-ride="carousel" data-interval="3000").d-md-block.d-none
-                .carousel-inner
-                    .carousel-item.active
-                        .row.g-3
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image0.png", alt="Stock TAXIM")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Polichela TAXIM")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image2.png", alt="Linea TAXIM")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Nuevo Ingreso")
-                    .carousel-item
-                        .row.g-3
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image2.png", alt="Nuevo Ingreso")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Stock TAXIM")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image0.png", alt="Polichela TAXIM")
-                            .col-6.col-md-3
-                                a(href="#")
-                                    img.img-fluid.w-100(src="./img/slider/image1.png", alt="Linea TAXIM")
-                .carousel-indicators.mt-4
-                    button.active(type="button" data-target="#carouselInstagram" data-slide-to="0")
-                    button(type="button" data-target="#carouselInstagram" data-slide-to="1")
-            .swiper-container.d-block.d-md-none#swiperInstagramMovile
+            .swiper-container#swiperInstagramMovile
                 .swiper-wrapper
                     .swiper-slide
                         a(href="#")

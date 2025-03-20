@@ -18693,10 +18693,7 @@ a.btn-icon-only {
 
 .footer.has-cards {
   overflow: hidden;
-  padding-top: 500px;
-  margin-top: -420px;
   position: relative;
-  background: transparent;
   pointer-events: none;
 }
 /*

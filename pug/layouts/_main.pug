@@ -43,71 +43,142 @@ html(lang="en")
         script(src="./js/plugins/bootstrap-datepicker.min.js")
         script(src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js")
         script.
-            var animation = lottie.loadAnimation({
-                container: document.getElementById('lottie-container'), 
-                renderer: 'svg',
-                loop: false,
-                autoplay: true,
-                path: './img/taxim.json'
-            });
+            var animation = {};
 
-            // Esperar a que la animación se cargue
-            animation.addEventListener('DOMLoaded', function() {
-                // Obtener información sobre la animación
-                var totalFrames = animation.totalFrames;
-                var fps = animation.frameRate;
-                var duration = animation.getDuration();
-                
-                // Configurar frames para el ping-pong
-                var startFrame = Math.floor(fps * 5); // Frame para segundo 5
-                var endFrame = Math.floor(fps * 10);   // Frame para segundo 10
-                var isReversed = false;
-                
-                // Configurar velocidad inicial
-                animation.setSpeed(0.5);
-                
-                // Función para reproducir en modo ping-pong
-                function playPingPong() {
-                    if (!isReversed) {
-                        animation.setDirection(1);  // Dirección normal
-                        animation.playSegments([startFrame, endFrame], true);
-                    } else {
-                        animation.setDirection(-1); // Dirección inversa
-                        animation.playSegments([endFrame, startFrame], true);
-                    }
-                    isReversed = !isReversed;
+            function loadAnimation() {
+                if (window.innerWidth < 768) {
+                    animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container'), 
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        path: './img/taxim-m.json'
+                    });
+                } else {
+                    animation = lottie.loadAnimation({
+                        container: document.getElementById('lottie-container'), 
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        path: './img/taxim.json'
+                    });
                 }
-                
-                // Cuando termine la primera reproducción
-                animation.addEventListener('complete', function() {
-                    playPingPong(); // Iniciar el ping-pong
+
+                animation.addEventListener('DOMLoaded', function() {
+                    if (window.innerWidth < 768) {
+                        animation.path = './img/taxim-m.json';
+                    }
+
+                    var totalFrames = animation.totalFrames;
+                    var fps = animation.frameRate;
+                    var duration = animation.getDuration();
+                    
+                    var startFrame = Math.floor(fps * 5);
+                    var endFrame = Math.floor(fps * 10);
+                    var isReversed = false;
+                    
+                    animation.setSpeed(0.5);
+                    
+                    function playPingPong() {
+                        if (!isReversed) {
+                            animation.setDirection(1);
+                            animation.playSegments([startFrame, endFrame], true);
+                        } else {
+                            animation.setDirection(-1);
+                            animation.playSegments([endFrame, startFrame], true);
+                        }
+                        isReversed = !isReversed;
+                    }
+                    
+                    animation.addEventListener('complete', function() {
+                        playPingPong();
+                    });
+                    
+                    animation.addEventListener('loopComplete', function() {
+                        playPingPong();
+                    });
                 });
-                
-                // Escuchar cuando termina cada segmento
-                animation.addEventListener('loopComplete', function() {
-                    playPingPong(); // Reproducir el siguiente segmento
-                });
+            }
+
+            // Cargar la animación inicial
+            loadAnimation();
+
+            // Escuchar cambios en el tamaño de la pantalla
+            window.addEventListener('resize', function() {
+                animation.destroy(); // Destruir la animación actual
+                loadAnimation(); // Recargar la animación con el nuevo tamaño
             });
 
-            // Inicializar Swiper
-            const swiperInstagram = new Swiper('#swiperInstagramMovile', {
+            // Inicializar Swiper para Instagram Móvil
+            const swiperInstagramMovile = new Swiper('#swiperInstagramMovile', {
                 slidesPerView: 1.6,
                 centeredSlides: true,
-                spaceBetween: 20,
                 loop: true,
-                speed: 600,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false
-                },
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true
                 },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
                 breakpoints: {
                     576: {
-                        slidesPerView: 1.8
+                        slidesPerView: 1.8,
+                        speed: 600,
+                        spaceBetween: 10,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        centeredSlides: false,
+                        spaceBetween: 30,
+                        loop: false,
+                        spaceBetween: 5
                     }
+                }
+            });
+
+            const swiperCards = new Swiper('#swiperCards', {
+                slidesPerView: 1,
+                centeredSlides: true,
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false
+                },
+                breakpoints: {
+                    576: {
+                        slidesPerView: 1.1,
+                        speed: 600,
+                        spaceBetween: 10,
+                        loop: true
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        centeredSlides: false,
+                        spaceBetween: 30,
+                        loop: false,
+                        spaceBetween: 5
+                    }
+                }
+            });
+
+            // Inicializar Swiper para Testimonios
+            const swiperTestimonios = new Swiper('#swiperTestimonios', {
+                loop: true,
+                slidesPerView: 1.1,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: true
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
                 }
             });
         script.

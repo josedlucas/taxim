@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+.index-page {
+    contain: content;    
+}
+
+
 #lottie-container{
     margin-top: -4rem;
 }
@@ -22,7 +27,7 @@
     transform: scale(1.4);
 }
 
-.card {
+#section-components .card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-radius: 15px;
     border: none;
@@ -31,34 +36,38 @@
     overflow: hidden;
 }
 
-.card:hover {
+#swiperTestimonios .card{
+    border-radius: 15px;
+}
+
+#section-components .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.card-img-top {
+#section-components .card-img-top {
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.card:hover .card-img-top {
+#section-components .card:hover .card-img-top {
     transform: scale(1.05);
 }
 
-.card-body {
+#section-components .card-body {
     padding: 2rem 1.5rem;
     background: white;
 }
 
-.card-title {
+#section-components .card-title {
     color: #32325d;
     margin-bottom: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.card-text {
+#section-components .card-text {
     color: #525f7f;
     line-height: 1.6;
 }
@@ -71,19 +80,6 @@
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@media (min-width: 1468px) {
-}
-
-@media (max-width: 768px) {
-    .card {
-        margin: 0 auto 2rem;
-    }
-    
-    .section-components .row {
-        margin: 0 1rem;
-    }
 }
 
 /* Estilos para la sección de repuestos */
@@ -183,6 +179,33 @@
     background-color: #FFC107;
 }
 
+/* Estilos comunes para todos los Swipers */
+.swiper {
+    width: 100%;
+    position: relative;
+}
+
+.swiper-pagination {
+    position: relative;
+    bottom: 0 !important;
+    margin-top: 1rem;
+}
+
+.swiper-pagination-bullet {
+    width: 6%;
+    height: 9px;
+    border-radius: 20px;
+    background-color: #E0E0E0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    margin: 0 8px;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #FFC107;
+}
+
+/* Swiper Instagram Móvil */
 #swiperInstagramMovile {
     width: 100%;
     padding: 20px 0;
@@ -193,14 +216,10 @@
 #swiperInstagramMovile .swiper-slide {
     width: 60%;
     transition: all 0.3s ease;
-    opacity: 0.4;
     transform: scale(0.85);
 }
 
-#swiperInstagramMovile .swiper-slide-active {
-    opacity: 1;
-    transform: scale(1);
-}
+
 
 #swiperInstagramMovile .swiper-slide img {
     border-radius: 0.75rem;
@@ -211,28 +230,65 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-#swiperInstagramMovile .swiper-pagination {
-    bottom: -10px;
+
+
+/* Swiper Testimonios */
+#swiperTestimonios {
+    overflow: hidden;
 }
 
-#swiperInstagramMovile .swiper-pagination-bullet {
-    width: 6%;
-    height: 9px;
-    border-radius: 20px;
-    background-color: #E0E0E0;
+#swiperTestimonios .swiper-slide {
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+#swiperTestimonios .swiper-slide-active {
     opacity: 1;
+}
+
+/* Swiper Instagram Desktop */
+#swiperInstagram {
+    overflow: hidden;
+}
+
+#swiperInstagram .swiper-slide img {
+    border-radius: 0.75rem;
     transition: all 0.3s ease;
-    margin: 0 8px;
 }
 
-#swiperInstagramMovile .swiper-pagination-bullet-active {
-    background-color: #FFC107;
+#swiperInstagram .swiper-slide img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 576px) {
-    #swiperInstagramMovile .swiper-slide {
-        width: 75%;
-    }
+/* Swiper Cards */
+#swiperCards {
+    padding: 20px 0;
+    overflow: visible;
+}
+
+#swiperCards .swiper-slide {
+    width: 85%;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+}
+
+
+#swiperCards .card {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    width: 100%;
+    max-width: 320px;
+}
+
+#swiperCards .card img {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+#swiperCards .card-body {
+    padding: 1.5rem;
 }
 
 .rounded-3 {
@@ -303,8 +359,41 @@
     }
 }
 
+
 @media (max-width: 768px) {
-    #repuestos .img-fluid {
-        max-width: 80%;
+    #section-components .card {
+        margin: 0 auto 2rem;
+    }
+
+    #section-components .card-title {
+        font-size: 1rem;
+    }
+    
+    .section-components .row {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-components {
+        padding: 0;
+    }
+    #swiperInstagramMovile .swiper-slide {
+        width: 75%;
+    }
+    #repuestos {
+        h2 {
+            font-size: 1.5rem;
+        }
+        .img-fluid {
+            max-width: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 111%;   
+        }
+        .container > .row > div:nth-child(2) {
+            margin-top: 16rem;
+        }
     }
 }
