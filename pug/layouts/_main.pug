@@ -188,3 +188,11 @@ html(lang="en")
                 );
                 }
             }
+        script.
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#navbar-main').addClass('bg-white');
+                } else {
+                    $('#navbar-main').removeClass('bg-white');
+                }
+            });
