@@ -1,0 +1,54 @@
+extends ../layouts/_main
+block content 
+    .container.pt-md-5.px-0.px-md-auto.pb-md-5.mb-md-5
+        .card.shadow.rounded-3.px-5.py-5.col-md-10.mx-auto.mt-md-5.cardMNone
+            h5.display-5.font-weight-bold.text-center.d-md-none.d-block #TodoParaTuRenault
+            h3.display-4.font-weight-bold.mb-5.text-center.text-md-left.mb-md-5
+                | ENVIANOS UN MENSAJE
+            .row
+                .col-md-6
+                    form(action="/contact" method="post" onsubmit="return validateForm()")
+                        .form-group
+                            label.text-muted(for="name") Nombre *
+                            input#name.form-control(type="text" name="name" required)
+                        .form-group
+                            label.text-muted(for="nickname") Apodo *
+                            input#nickname.form-control(type="text" name="nickname" required)
+                        .form-group
+                            label.text-muted(for="phone") Telefono *
+                            input#phone.form-control(type="tel" name="phone" required)
+                        .form-group
+                            label.text-muted(for="email") Email *
+                            input#email.form-control(type="email" name="email" required)
+                .col-md-6
+                    .form-group
+                        label.text-muted(for="message") Mensaje *
+                        textarea#message.form-control(rows="5" name="message" required)
+                    .pt-3 
+                        button.btn.btn-primary(type="submit").rounded-0.mt-3 Enviar
+        script.
+            function validateForm() {
+                let name = document.getElementById("name").value;
+                let nickname = document.getElementById("nickname").value;
+                let phone = document.getElementById("phone").value;
+                let email = document.getElementById("email").value;
+                let message = document.getElementById("message").value;
+                if (name == "" || nickname == "" || phone == "" || email == "" || message == "") {
+                    alert("Debe completar todos los campos");
+                    return false;
+                }
+                if (phone.length != 10) {
+                    alert("El tel fono debe tener 10 caracteres");
+                    return false;
+                }
+                if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                    alert("El email no es v lido");
+                    return false;
+                }
+                return true;
+            }
+            
+            
+    img(src="./img/theme/products/section1/bg.png", alt="Background").bg-home.container.pt-4.d-md-block.d-none
+    .d-md-none.d-block.pt-5
+        img(src="./img/theme/products/section1/bgM.png", alt="Background").bg-home.container.pt-4.mt-5

@@ -75,11 +75,12 @@ html(lang="en")
                     
                     var startFrame = Math.floor(fps * 5);
                     var endFrame = Math.floor(fps * 10);
-                    var isReversed = false;
+                    var isReversed = true;
                     
-                    animation.setSpeed(0.5);
+                    //
                     
                     function playPingPong() {
+                        animation.setSpeed(0.5);
                         if (!isReversed) {
                             animation.setDirection(1);
                             animation.playSegments([startFrame, endFrame], true);
@@ -94,9 +95,6 @@ html(lang="en")
                         playPingPong();
                     });
                     
-                    animation.addEventListener('loopComplete', function() {
-                        playPingPong();
-                    });
                 });
             }
 

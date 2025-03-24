@@ -471,6 +471,30 @@ h6,
   line-height: 1.5;
 }
 
+.display-5 {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.display-6 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.display-7 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.display-8 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 hr {
   margin-top: 2rem;
   margin-bottom: 2rem;
