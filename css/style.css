@@ -317,10 +317,10 @@
 #repuestos .img-fluid {
     height: auto;
     position: absolute;
-    margin-top: -7.2rem;
+    margin-top: -5.2rem;
     right: 2rem;
-    width: min(1200px, calc(70% + 25vw));
-    max-width: calc(100vw - 2rem) ;
+    width: min(1200px, calc(45% + 25vw));
+    max-width: calc(100vw - 2rem);
 }
 
 #repuestos img:hover {
@@ -371,9 +371,9 @@
 
 @media (min-width: 1400px){
     #repuestos .img-fluid {
-        margin-top: -8.2rem;
-        width: min(1200px, calc(55% + 25vw));
-        max-width: calc(100vw - 2rem) ;
+        margin-top: -6.2rem;
+        width: min(1200px, calc(40% + 25vw));
+        max-width: calc(100vw - 2rem);
     }
 }
 
@@ -412,7 +412,11 @@
     }
 }
 
-
+@media (min-width: 768px) {
+    .contain {
+        contain: content;
+    }
+}
 @media (max-width: 768px) {
     #contact {
         height: 38vh;
