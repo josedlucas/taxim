@@ -303,22 +303,41 @@
               slidesPerView: 1,
               centeredSlides: true,
               autoplay: {
-                  delay: 2000,
+                  delay: 1000,
                   disableOnInteraction: true,
                   enabled: false
+              },
+              pagination: {
+                  el: '.swiper-pagination',
+                  clickable: true
               }
           });
       
-          // Agregar eventos específicos para cada slider
+          // Ocultar paginación inicialmente
+          const pagination = slider.querySelector('.swiper-pagination');
+          if (pagination) {
+              pagination.style.opacity = '0';
+              pagination.style.transition = 'opacity 0.3s';
+          }
+      
+          // Eventos para mostrar/ocultar autoplay y paginación
           slider.addEventListener('mouseenter', () => {
               if (productSliders[index].autoplay) {
                   productSliders[index].autoplay.start();
+              }
+              const pagination = slider.querySelector('.swiper-pagination');
+              if (pagination) {
+                  pagination.style.opacity = '9';
               }
           });
           
           slider.addEventListener('mouseleave', () => {
               if (productSliders[index].autoplay) {
                   productSliders[index].autoplay.stop();
+              }
+              const pagination = slider.querySelector('.swiper-pagination');
+              if (pagination) {
+                  pagination.style.opacity = '0';
               }
           });
       });
