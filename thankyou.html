@@ -108,6 +108,7 @@
     <script src="./js/plugins/datetimepicker.js" type="text/javascript"></script>
     <script src="./js/plugins/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="./js/slider.js" type="text/javascript"></script>
     <script>
       var animation = {};
       
@@ -243,6 +244,35 @@
               clickable: true
           }
       });
+      
+      // Inicializar todos los sliders de productos
+      const productSliders = [];
+      document.querySelectorAll('.slider-product').forEach((slider, index) => {
+          productSliders[index] = new Swiper(slider, {
+              loop: true,
+              slidesPerView: 1,
+              centeredSlides: true,
+              autoplay: {
+                  delay: 2000,
+                  disableOnInteraction: true,
+                  enabled: false
+              }
+          });
+      
+          // Agregar eventos específicos para cada slider
+          slider.addEventListener('mouseenter', () => {
+              if (productSliders[index].autoplay) {
+                  productSliders[index].autoplay.start();
+              }
+          });
+          
+          slider.addEventListener('mouseleave', () => {
+              if (productSliders[index].autoplay) {
+                  productSliders[index].autoplay.stop();
+              }
+          });
+      });
+      
     </script>
     <script>
       function scrollToDownload() {
