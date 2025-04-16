@@ -1,13 +1,21 @@
 extends ../layouts/_main
 block content 
+    // Agregar script de reCAPTCHA
+    script(src="https://www.google.com/recaptcha/api.js" async defer)
     .container.pt-md-5.px-0.px-md-auto.pb-md-5.mb-md-5
+        // Agregar loader
+        .loader-container(style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;")
+            .d-flex.justify-content-center.align-items-center.h-100
+                .spinner-border.text-light(role="status")
+                    span.sr-only Cargando...
+        
         .card.shadow.rounded-3.px-5.py-5.col-md-10.mx-auto.mt-md-5.cardMNone
             h5.display-5.font-weight-bold.text-center.d-md-none.d-block #TodoParaTuRenault
             h3.display-4.font-weight-bold.mb-5.text-center.text-md-left.mb-md-5
                 | ENVIANOS UN MENSAJE
-            .row
+            form.row#contacto
                 .col-md-6
-                    form(action="/contact" method="post" onsubmit="return validateForm()")
+                    div
                         .form-group
                             label.text-muted(for="name") Nombre *
                             input#name.form-control(type="text" name="name" required)
@@ -24,30 +32,91 @@ block content
                     .form-group
                         label.text-muted(for="message") Mensaje *
                         textarea#message.form-control(rows="5" name="message" required)
+                    // Agregar el captcha
+                    .form-group.mt-3
+                        .g-recaptcha(data-sitekey="6LeyjRUrAAAAAIVOms37BFTDdwSLnTiF06ILcUU1")
                     .pt-3 
-                        button.btn.btn-primary(type="submit").rounded-0.mt-3 Enviar
+                        button#submitBtn.btn.btn-primary.rounded-0.mt-3(type="submit") Enviar
         script.
-            function validateForm() {
+            // Esperar a que el DOM esté completamente cargado
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("contacto");
+                form.addEventListener("submit", async function(e) {
+                    e.preventDefault(); // Prevenir el envío del formulario por defecto
+                    await validateForm();
+                });
+            });
+
+            async function validateForm() {
                 let name = document.getElementById("name").value;
                 let nickname = document.getElementById("nickname").value;
                 let phone = document.getElementById("phone").value;
                 let email = document.getElementById("email").value;
                 let message = document.getElementById("message").value;
+                
+                // Validación de campos vacíos
                 if (name == "" || nickname == "" || phone == "" || email == "" || message == "") {
                     alert("Debe completar todos los campos");
-                    return false;
+                    return;
                 }
+
+                // Validación de teléfono
                 if (phone.length != 10) {
-                    alert("El tel fono debe tener 10 caracteres");
-                    return false;
+                    alert("El teléfono debe tener 10 caracteres");
+                    return;
                 }
+
+                // Validación de email
                 if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                    alert("El email no es v lido");
-                    return false;
+                    alert("El email no es válido");
+                    return;
                 }
-                return true;
+
+                // Validación del captcha
+                const captchaResponse = grecaptcha.getResponse();
+                if (!captchaResponse) {
+                    alert("Por favor, complete el captcha");
+                    return;
+                }
+
+                try {
+                    $('.loader-container').css('display', 'block');
+                    
+                    var raw = JSON.stringify({
+                        "name": $('#name').val(),
+                        "nickname": $('#nickname').val(),
+                        "phone": $('#phone').val(),
+                        "email": $('#email').val(),
+                        "message": $('#message').val(),
+                        "recaptcha": grecaptcha.getResponse()
+                    });
+
+                    const url = 'https://script.google.com/macros/s/AKfycbzraNpqfqNsO0v3XvzC9caOAs9efghEYG5hy5dMacYm5eXnZqcou4eNSOnNvay5Q8bNTA/exec';
+                    
+                    axios.post(url, raw)
+                        .then(response => {
+                            $('.loader-container').css('display', 'none');
+                            Swal.fire({
+                                title: "Mensaje enviado",
+                                text: "Gracias por contactarnos",
+                                icon: "success",
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true
+                            });
+                            $('#contacto')[0].reset();
+                            grecaptcha.reset();
+                        });
+                } catch (error) {
+                    $('.loader-container').css('display', 'none');
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: "Error",
+                        text: "Error al enviar el mensaje",
+                        icon: "error"
+                    });
+                }
             }
-            
             
     img(src="./img/theme/products/section1/bg.png", alt="Background").bg-home.container.pt-4.d-md-block.d-none
     .d-md-none.d-block.pt-5

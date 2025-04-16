@@ -17,6 +17,7 @@
     <link href="./css/nucleo-svg.css" rel="stylesheet">
     <!-- CSS Files-->
     <link href="./css/argon-design-system.css?v=1.2.2" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
@@ -69,13 +70,21 @@
     </nav>
     <div class="wrapper">
       <!-- Block content-->
+      <!-- Agregar script de reCAPTCHA-->
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       <div class="container pt-md-5 px-0 px-md-auto pb-md-5 mb-md-5">
+        <!-- Agregar loader-->
+        <div class="loader-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999;">
+          <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="spinner-border text-light" role="status"><span class="sr-only">Cargando...</span></div>
+          </div>
+        </div>
         <div class="card shadow rounded-3 px-5 py-5 col-md-10 mx-auto mt-md-5 cardMNone">
           <h5 class="display-5 font-weight-bold text-center d-md-none d-block">#TodoParaTuRenault</h5>
           <h3 class="display-4 font-weight-bold mb-5 text-center text-md-left mb-md-5">ENVIANOS UN MENSAJE</h3>
-          <div class="row">
+          <form class="row" id="contacto">
             <div class="col-md-6">
-              <form action="/contact" method="post" onsubmit="return validateForm()">
+              <div>
                 <div class="form-group">
                   <label class="text-muted" for="name">Nombre *</label>
                   <input class="form-control" id="name" type="text" name="name" required>
@@ -92,41 +101,103 @@
                   <label class="text-muted" for="email">Email *</label>
                   <input class="form-control" id="email" type="email" name="email" required>
                 </div>
-              </form>
+              </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="text-muted" for="message">Mensaje *</label>
                 <textarea class="form-control" id="message" rows="5" name="message" required></textarea>
               </div>
+              <!-- Agregar el captcha-->
+              <div class="form-group mt-3">
+                <div class="g-recaptcha" data-sitekey="6LeyjRUrAAAAAIVOms37BFTDdwSLnTiF06ILcUU1"></div>
+              </div>
               <div class="pt-3"> 
-                <button class="btn btn-primary rounded-0 mt-3" type="submit">Enviar</button>
+                <button class="btn btn-primary rounded-0 mt-3" id="submitBtn" type="submit">Enviar</button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
         <script>
-          function validateForm() {
+          // Esperar a que el DOM esté completamente cargado
+          document.addEventListener("DOMContentLoaded", function() {
+              const form = document.getElementById("contacto");
+              form.addEventListener("submit", async function(e) {
+                  e.preventDefault(); // Prevenir el envío del formulario por defecto
+                  await validateForm();
+              });
+          });
+          
+          async function validateForm() {
               let name = document.getElementById("name").value;
               let nickname = document.getElementById("nickname").value;
               let phone = document.getElementById("phone").value;
               let email = document.getElementById("email").value;
               let message = document.getElementById("message").value;
+              
+              // Validación de campos vacíos
               if (name == "" || nickname == "" || phone == "" || email == "" || message == "") {
                   alert("Debe completar todos los campos");
-                  return false;
+                  return;
               }
-              if (phone.length != 10) {
-                  alert("El tel fono debe tener 10 caracteres");
-                  return false;
-              }
-              if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                  alert("El email no es v lido");
-                  return false;
-              }
-              return true;
-          }
           
+              // Validación de teléfono
+              if (phone.length != 10) {
+                  alert("El teléfono debe tener 10 caracteres");
+                  return;
+              }
+          
+              // Validación de email
+              if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                  alert("El email no es válido");
+                  return;
+              }
+          
+              // Validación del captcha
+              const captchaResponse = grecaptcha.getResponse();
+              if (!captchaResponse) {
+                  alert("Por favor, complete el captcha");
+                  return;
+              }
+          
+              try {
+                  $('.loader-container').css('display', 'block');
+                  
+                  var raw = JSON.stringify({
+                      "name": $('#name').val(),
+                      "nickname": $('#nickname').val(),
+                      "phone": $('#phone').val(),
+                      "email": $('#email').val(),
+                      "message": $('#message').val(),
+                      "recaptcha": grecaptcha.getResponse()
+                  });
+          
+                  const url = 'https://script.google.com/macros/s/AKfycbzraNpqfqNsO0v3XvzC9caOAs9efghEYG5hy5dMacYm5eXnZqcou4eNSOnNvay5Q8bNTA/exec';
+                  
+                  axios.post(url, raw)
+                      .then(response => {
+                          $('.loader-container').css('display', 'none');
+                          Swal.fire({
+                              title: "Mensaje enviado",
+                              text: "Gracias por contactarnos",
+                              icon: "success",
+                              showConfirmButton: false,
+                              timer: 2000,
+                              timerProgressBar: true
+                          });
+                          $('#contacto')[0].reset();
+                          grecaptcha.reset();
+                      });
+              } catch (error) {
+                  $('.loader-container').css('display', 'none');
+                  console.error('Error:', error);
+                  Swal.fire({
+                      title: "Error",
+                      text: "Error al enviar el mensaje",
+                      icon: "error"
+                  });
+              }
+          }
           
         </script>
       </div><img class="bg-home container pt-4 d-md-block d-none" src="./img/theme/products/section1/bg.png" alt="Background">
@@ -165,6 +236,34 @@
     <script src="./js/plugins/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="./js/slider.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script>
+      // Configuración global de axios para Google Apps Script
+      axios.defaults.headers.post['Content-Type'] = 'text/plain;charset=utf-8';
+      axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+      axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+      
+      // Crear una instancia de axios con configuración específica
+      const apiAxios = axios.create({
+          baseURL: 'https://script.google.com/macros/s/',
+          timeout: 10000,
+          headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+          },
+          transformRequest: [(data) => JSON.stringify(data)],
+          transformResponse: [(data) => {
+              try {
+                  return JSON.parse(data);
+              } catch (error) {
+                  return {
+                      result: 'error',
+                      error: 'Error al procesar la respuesta'
+                  };
+              }
+          }]
+      });
+    </script>
     <script>
       var animation = {};
       
