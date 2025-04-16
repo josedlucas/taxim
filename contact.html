@@ -134,60 +134,68 @@
               let phone = document.getElementById("phone").value;
               let email = document.getElementById("email").value;
               let message = document.getElementById("message").value;
-              
+          
               // Validación de campos vacíos
               if (name == "" || nickname == "" || phone == "" || email == "" || message == "") {
-                  alert("Debe completar todos los campos");
-                  return;
-              }
-          
-              // Validación de teléfono
-              if (phone.length != 10) {
-                  alert("El teléfono debe tener 10 caracteres");
+                  Swal.fire({
+                      title: "Error",
+                      text: "Debe completar todos los campos",
+                      icon: "error"
+                  });
                   return;
               }
           
               // Validación de email
               if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                  alert("El email no es válido");
+                  Swal.fire({
+                      title: "Error",
+                      text: "El email no es válido",
+                      icon: "error"
+                  });
                   return;
               }
           
-              // Validación del captcha
-              const captchaResponse = grecaptcha.getResponse();
-              if (!captchaResponse) {
-                  alert("Por favor, complete el captcha");
+              const captcha = grecaptcha.getResponse();
+              if (!captcha) {
+                  Swal.fire({
+                      title: "Error",
+                      text: "Debe completar el CAPTCHA",
+                      icon: "error"
+                  });
                   return;
               }
           
               try {
                   $('.loader-container').css('display', 'block');
-                  
-                  var raw = JSON.stringify({
-                      "name": $('#name').val(),
-                      "nickname": $('#nickname').val(),
-                      "phone": $('#phone').val(),
-                      "email": $('#email').val(),
-                      "message": $('#message').val(),
-                      "recaptcha": grecaptcha.getResponse()
+          
+                  const response = await axios.post('/api/contact.php', {
+                      name: name,
+                      nickname: nickname,
+                      phone: phone,
+                      email: email,
+                      message: message,
+                      captcha: captcha
                   });
           
-                  const url = 'https://script.google.com/macros/s/AKfycbzraNpqfqNsO0v3XvzC9caOAs9efghEYG5hy5dMacYm5eXnZqcou4eNSOnNvay5Q8bNTA/exec';
-                  
-                  axios.post(url, raw)
-                      .then(response => {
-                          $('.loader-container').css('display', 'none');
-                          Swal.fire({
-                              title: "Mensaje enviado",
-                              text: "Gracias por contactarnos",
-                              icon: "success",
-                              showConfirmButton: false,
-                              timer: 2000,
-                              timerProgressBar: true
-                          });
-                          $('#contacto')[0].reset();
-                          grecaptcha.reset();
+                  $('.loader-container').css('display', 'none');
+          
+                  if (response.data.success) {
+                      Swal.fire({
+                          title: "Mensaje enviado",
+                          text: response.data.message,
+                          icon: "success",
+                          showConfirmButton: false,
+                          timer: 2000,
+                          timerProgressBar: true
                       });
+                      form.reset();
+                  } else {
+                      Swal.fire({
+                          title: "Error",
+                          text: response.data.message,
+                          icon: "error"
+                      });
+                  }
               } catch (error) {
                   $('.loader-container').css('display', 'none');
                   console.error('Error:', error);
